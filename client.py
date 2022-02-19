@@ -20,3 +20,16 @@ def receive():
             print('An error occurred.')
             client.close()
             break
+
+
+def write():
+    while True:
+        msg = f'{name}: {input("")}'
+        client.send(msg.encode('ascii'))
+
+
+receive_thread = threading.Thread(target=receive)
+receive_thread.start()
+
+write_thread = threading.Thread(target=write)
+write_thread.start()
