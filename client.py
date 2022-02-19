@@ -1,7 +1,7 @@
 import socket
 import threading
 
-name = input("Choose a name: ")
+name = str(input("Choose a name: "))
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect(('127.0.0.1', 55555))
@@ -24,7 +24,7 @@ def receive():
 
 def write():
     while True:
-        msg = f'{name}: {input("")}'
+        msg = '{x}: {y}'.format(x=name, y=input(""))
         client.send(msg.encode('ascii'))
 
 
