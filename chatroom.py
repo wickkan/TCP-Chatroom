@@ -32,3 +32,12 @@ def handle(client):
             clients.remove(client)
             client.close()
             nickname = names[index]
+            broadcast(f'{nickname} left the chat.'.encode('ascii'))
+            names.remove(nickname)
+            break
+
+
+def receive():
+    while True:
+        client, address = server.accept()
+        print("Connected with {}".format(str(address)))
