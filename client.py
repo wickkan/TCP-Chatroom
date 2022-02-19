@@ -1,7 +1,7 @@
 import socket
 import threading
 
-name = str(input("Choose a name: "))
+nickname = str(input("Choose a name: "))
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect(('127.0.0.1', 55555))
@@ -12,8 +12,7 @@ def receive():
         try:
             message = client.recv(1024).decode('ascii')
             if message == 'NAME':
-                client.send(name.encode('ascii'))
-                pass
+                client.send(nickname.encode('ascii'))
             else:
                 print(message)
         except:
@@ -24,7 +23,7 @@ def receive():
 
 def write():
     while True:
-        msg = '{x}: {y}'.format(x=name, y=input(""))
+        msg = '{x}: {y}'.format(x=nickname, y=input(""))
         client.send(msg.encode('ascii'))
 
 
